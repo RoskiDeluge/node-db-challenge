@@ -44,16 +44,6 @@ exports.up = function (knex) {
   );
 };
 
-
-//----------------------------------------------------------------------------//
-// DEFINE ROLLBACK LOGIC
-//----------------------------------------------------------------------------//
-// When you define the rollback logic, you must roll things back in reverse
-// order. This is especially important when there are foreign key constraints.
-// If you tried to drop the [species] table before dropping the [animals] table,
-// the foreign key constraint behavior could prevent the drop. If the default
-// 'RESTRICT' behavior is in place, dropping [species] before [animals] would
-// fail. 
 exports.down = function (knex) {
   return (
       knex.schema
