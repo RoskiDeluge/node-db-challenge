@@ -15,13 +15,14 @@ exports.up = function (knex) {
               tbl.integer('project_id')
                 .unsigned()
                 .notNullable()
-                .references(project.id)
-                .onDelete('CASCADE')
+                .references('id')
+                .inTable('project')
+                .onDelete('RESTRICT')
                 .onUpdate('CASCADE');
           })
           .createTable('resources', tbl => {
               tbl.increments();
-              tbl.string('name', 255).notNullable();
+              tbl.string('name', 255).unique().notNullable();
               tbl.text('description');
           })
           .createTable('project_resources', tbl => {
@@ -29,16 +30,17 @@ exports.up = function (knex) {
                   .unsigned()
                   .notNullable()
                   .references('id')
-                  .inTable('projects')
-                  .onDelete('CASCADE')
+                  .inTable('project')
+                  .onDelete('RESTRICT')
                   .onUpdate('CASCADE');
 
               tbl.integer('resources_id')
                   .unsigned()
                   .notNullable()
-                  .onDelete('CASCADE')
+                  .references('id')
+                  .inTable('resources')
+                  .onDelete('RESTRICT')
                   .onUpdate('CASCADE');
-              tbl.foreign('resources_id').references('resources.id');
               tbl.primary(['project_id', 'resources_id']);
           })
   );

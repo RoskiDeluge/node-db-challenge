@@ -4,7 +4,7 @@
   "description": "Sprint Challenge for Node DB module",
   "main": "index.js",
   "scripts": {
-    "sever": "nodemon index.js"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
